@@ -23,14 +23,28 @@ async def validation_exception_handler(request, exc):
 
 @app.on_event("startup")
 async def startup_event():
-    """Initialize database on startup."""
+    """Application startup logic."""
     logger.info("Starting application...")
-    init_database()
+    # NOTE: init_database() is disabled here because it causes timeouts on Vercel cold starts.
+    # Use /api/v1/init-db for manual initialization if needed.
     logger.info("Application started successfully")
 
 @app.get("/health")
 def health_check():
     return {"status": "ok", "supabase_url": "configured" if settings.SUPABASE_URL else "missing"}
+
+@app.post(f"{settings.API_V1_STR}/init-db", tags=["management"])
+def manual_init_db():
+    """Manually trigger database initialization."""
+    try:
+        init_database()
+        return {"status": "success", "message": "Database initialization triggered"}
+    except Exception as e:
+        logger.error(f"Manual DB init failed: {e}")
+        return JSONResponse(
+            status_code=500,
+            content={"status": "error", "message": str(e)}
+        )
 
 # CORS
 if settings.BACKEND_CORS_ORIGINS:
