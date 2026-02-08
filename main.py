@@ -1,5 +1,4 @@
 from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
 from core.config import settings
 from api.endpoints import games, rules, auth
 from db.init_db import init_database
@@ -45,16 +44,6 @@ def manual_init_db():
             status_code=500,
             content={"status": "error", "message": str(e)}
         )
-
-# CORS
-if settings.BACKEND_CORS_ORIGINS:
-    app.add_middleware(
-        CORSMiddleware,
-        allow_origins=[str(origin) for origin in settings.BACKEND_CORS_ORIGINS],
-        allow_credentials=True,
-        allow_methods=["*"],
-        allow_headers=["*"],
-    )
 
 app.include_router(auth.router, prefix=f"{settings.API_V1_STR}/auth", tags=["auth"])
 app.include_router(games.router, prefix=f"{settings.API_V1_STR}/games", tags=["games"])
