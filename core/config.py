@@ -6,8 +6,8 @@ class Settings(BaseSettings):
     PROJECT_NAME: str = "Point Calculator API"
     API_V1_STR: str = "/api/v1"
     
-    SUPABASE_URL: str = os.getenv("SUPABASE_URL")
-    SUPABASE_KEY: str = os.getenv("SUPABASE_KEY")
+    SUPABASE_URL: Optional[str] = os.getenv("SUPABASE_URL")
+    SUPABASE_KEY: Optional[str] = os.getenv("SUPABASE_KEY")
     SUPABASE_DB_PASSWORD: Optional[str] = os.getenv("SUPABASE_DB_PASSWORD")
     
     # CORS
