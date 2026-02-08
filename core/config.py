@@ -11,7 +11,10 @@ class Settings(BaseSettings):
     SUPABASE_DB_PASSWORD: Optional[str] = os.getenv("SUPABASE_DB_PASSWORD")
     
     # CORS
-    BACKEND_CORS_ORIGINS: list[str] = ["http://localhost:5173"]
+    BACKEND_CORS_ORIGINS: list[str] = [
+        "http://localhost:5173",
+        "https://point-calculator-flame.vercel.app",
+    ]
 
     model_config = SettingsConfigDict(env_file=".env", case_sensitive=True)
 
