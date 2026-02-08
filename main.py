@@ -28,6 +28,10 @@ async def startup_event():
     init_database()
     logger.info("Application started successfully")
 
+@app.get("/health")
+def health_check():
+    return {"status": "ok", "supabase_url": "configured" if settings.SUPABASE_URL else "missing"}
+
 # CORS
 if settings.BACKEND_CORS_ORIGINS:
     app.add_middleware(
