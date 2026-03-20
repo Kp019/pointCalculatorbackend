@@ -54,8 +54,13 @@ class GameUpdate(BaseModel):
     winner: Optional[str] = None
     name: Optional[str] = None
 
+import uuid
+from datetime import datetime
+
 class GameInDB(GameBase):
-    id: str
-    user_id: str
-    created_at: str
-    updated_at: str
+    id: uuid.UUID
+    user_id: uuid.UUID
+    created_at: datetime
+    updated_at: datetime
+
+    model_config = ConfigDict(from_attributes=True)

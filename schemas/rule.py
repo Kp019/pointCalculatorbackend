@@ -1,6 +1,7 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from typing import Optional
 from schemas.game import GameConfig
+import uuid
 
 class SavedRuleBase(BaseModel):
     name: str
@@ -14,4 +15,6 @@ class SavedRuleUpdate(BaseModel):
     config: Optional[GameConfig] = None
 
 class SavedRuleInDB(SavedRuleBase):
-    id: str
+    id: uuid.UUID
+    
+    model_config = ConfigDict(from_attributes=True)

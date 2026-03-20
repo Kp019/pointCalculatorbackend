@@ -30,12 +30,9 @@ class Settings(BaseSettings):
         return url
 
     # Authentication
-    # JWT_SECRET: str = "5e81abd25315c172ee9ddc886548f7d0"
-    # JWT_ALGORITHM: str = "HS256"
-    # ACCESS_TOKEN_EXPIRE_MINUTES: int = 43200
-    JWT_SECRET: str = os.getenv("JWT_SECRET")
-    JWT_ALGORITHM: str = os.getenv("JWT_ALGORITHM")
-    ACCESS_TOKEN_EXPIRE_MINUTES: int = os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES")
+    JWT_SECRET: str = "5e81abd25315c172ee9ddc886548f7d0"
+    JWT_ALGORITHM: str = "HS256"
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 43200
     
     # Legacy Supabase (to be removed)
     SUPABASE_URL: Optional[str] = None
@@ -46,6 +43,7 @@ class Settings(BaseSettings):
         "http://localhost:5173",
         "https://point-calculator-flame.vercel.app",
         "https://point-calculator.vercel.app",
+        "https://point-calculator-flame.vercel.app/rules",
     ]
 
     model_config = SettingsConfigDict(env_file=".env", case_sensitive=True)
