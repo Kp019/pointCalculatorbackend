@@ -31,7 +31,7 @@ async def startup_event():
 
 @app.get("/health")
 def health_check():
-    return {"status": "ok", "supabase_url": "configured" if settings.SUPABASE_URL else "missing"}
+    return {"status": "ok", "app": settings.PROJECT_NAME}
 
 @app.post(f"{settings.API_V1_STR}/init-db", tags=["management"])
 def manual_init_db():
