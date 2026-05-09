@@ -49,7 +49,7 @@ uv sync
 ### 4. Run the Server
 
 ```bash
-uv run uvicorn main:app --reload --port=9000
+uv run uvicorn main:app --reload --port=8000
 ```
 
 **The backend will automatically create database tables on first startup!**
@@ -71,17 +71,17 @@ uv sync
 ### 5. Run the Server
 
 ```bash
-uv run uvicorn main:app --reload --port=9000
+uv run uvicorn main:app --reload --port=8000
 ```
 
-The API will be available at `http://localhost:9000`
+The API will be available at `http://localhost:8000`
 
 ## API Documentation
 
 Once running, visit:
 
-- Swagger UI: `http://localhost:9000/docs`
-- ReDoc: `http://localhost:9000/redoc`
+- Swagger UI: `http://localhost:8000/docs`
+- ReDoc: `http://localhost:8000/redoc`
 
 ## Project Structure
 
